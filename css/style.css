@@ -5,6 +5,7 @@
     padding        : 0;
     box-sizing     : border-box;
     text-decoration: none;
+    list-style     : none;
 }
 
 body {
@@ -12,6 +13,15 @@ body {
     overflow-x : hidden;
 }
 
+/** Estilos del header */
+header {
+    height         : 85vh;
+    display        : flex;
+    flex-direction : column;
+    justify-content: space-between;
+}
+
+/** Efecto w */
 #wave {
     position   : absolute;
     z-index    : -1;
@@ -26,39 +36,54 @@ body {
     }
 }
 
-header {
-    height         : 85vh;
-    display        : flex;
-    flex-direction : column;
-    justify-content: space-between;
-}
-
+/** Estilos del menú */
 .menu {
     display        : flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     margin-top     : 20px;
 }
 
-.menu h2 {
-    font-size: 2em;
-    color    : aliceblue;
+.logo {
+    font-size  : 2em;
+    color      : aliceblue;
+    font-weight: bold;
 }
 
-.menu nav {
-    display    : flex;
-    gap        : 40px;
-    align-items: center;
+.main-nav ul {
+    display   : flex;
+    list-style: none;
 }
 
-.menu nav a {
-    font-size: 1.2em;
-    color    : aliceblue;
+.main-nav li {
+    margin-left: 1.5rem;
 }
 
-.menu nav a:hover {
+.main-nav a {
+    font-size     : 1.2em;
+    letter-spacing: 3px;
+    color         : aliceblue;
+}
+
+.main-nav a:hover {
     border-bottom: 2px solid aliceblue;
 }
 
+.menu-toggle {
+    display: none;
+    cursor : pointer;
+    z-index: 2;
+}
+
+.bar {
+    display         : block;
+    width           : 25px;
+    height          : 3px;
+    margin          : 5px auto;
+    background-color: #fff;
+    transition      : all 0.3s ease-in-out;
+}
+
+/** Estilos del contenedor principal */
 .contenedor {
     position : absolute;
     top      : 40%;
@@ -78,6 +103,7 @@ header {
     letter-spacing: 5px;
 }
 
+/** Estilos del tipado */
 .tipado {
     width       : 280px;
     margin      : 0 auto;
@@ -96,5 +122,50 @@ header {
 @keyframes blink {
     50% {
         border-color: transparent
+    }
+}
+
+/** MEDIA QUERIES */
+
+@media (max-width: 768px) {
+    .main-nav {
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        width           : 100%;
+        height          : 100vh;
+        background-color: #2f4613;
+        padding         : 1rem;
+        display         : none;
+        z-index         : 1;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        align-items   : center;
+    }
+
+    .main-nav li {
+        margin: 3rem 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .main-nav.active {
+        display: block;
     }
 }
